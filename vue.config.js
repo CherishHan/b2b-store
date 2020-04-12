@@ -15,8 +15,10 @@ const name = defaultSettings.title || 'vue Admin Template' // page title
 // port = 9528 npm run dev OR npm run dev --port = 9528
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 
+
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
+
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
    * for example GitHub Pages. If you plan to deploy your site to https://foo.github.io/bar/,
@@ -27,7 +29,8 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  // lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: false,
   productionSourceMap: false,
   devServer: {
     port: port,
@@ -36,7 +39,18 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    proxy: {
+      // change xxx-api/login => mock/login
+      // detail: https://cli.vuejs.org/config/#devserver-proxy
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://localhost:8080`, //修改后台接口地址
+        changeOrigin: true,
+        pathRewrite: {
+          ['^'+process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    }
+    //before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
