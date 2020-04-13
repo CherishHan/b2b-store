@@ -41,11 +41,13 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">登录</el-button>
 
       <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
+        <span style="float: right">
+          <p class="register" @click="gotoRegister">还没有账号？立即注册</p>
+        </span>
+        <!--<span> password: any</span>-->
       </div>
 
     </el-form>
@@ -95,6 +97,11 @@ export default {
     }
   },
   methods: {
+    gotoRegister(){
+      this.$router.push({
+        path: "/register"
+      });
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -177,6 +184,17 @@ $cursor: #fff;
 $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
+
+.register{
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #1ab2ff;
+  cursor: pointer;
+  text-align: left;
+  text-indent: 8px;
+  width: 160px;
+}
 
 .login-container {
   min-height: 100%;

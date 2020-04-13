@@ -12,6 +12,7 @@ import App from './App'
 import store from './store'
 import router from './router'
 import {apiConfig} from './config/apiConfig.js'
+import request from '@/utils/request'
 
 import '@/icons' // icon
 import '@/permission' // permission control
@@ -35,6 +36,7 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.prototype.$apiConfig = apiConfig;
+Vue.prototype.$http = request
 Vue.config.productionTip = false
 
 new Vue({

@@ -11,7 +11,7 @@ let apiConfig;
 function initApiConfig(){
   return {
     user: {
-      loginUrl: "/login",
+      registerUrl: "/register",
     }
   };
 }
