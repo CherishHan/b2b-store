@@ -18,3 +18,12 @@ export function validUsername(str) {
   const valid_map = ['admin', 'editor']
   return valid_map.indexOf(str.trim()) >= 0
 }
+
+export function checkMobile(str) {
+  let re = /^1\d{10}$/
+  if (re.test(str)) {
+    return true;
+  } else {
+    return false;
+  }
+}
